@@ -3,6 +3,20 @@ build/
 out/
 cmake-build-*/
 
+# CMake artifacts (leak if you configure without -B <builddir>)
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+*.vcxproj
+*.vcxproj.filters
+*.sln
+*.dir/
+ALL_BUILD*
+ZERO_CHECK*
+x64/
+Debug/
+Release/
+
 # Visual Studio
 .vs/
 *.user
