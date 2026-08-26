@@ -8,16 +8,18 @@
 3. Top-level `CMakeLists.txt`:
    - add `set(SCL2EXT_<NAME> "AUTO" CACHE STRING "...")`
    - add `<name>` to the `foreach(ext ...)` list
-4. Write:
-   - `include/SCL2Ext/<name>.hpp` — public API (namespace `scl2ext`)
-   - `src/<name>.cpp` — implementation
+4. Write (both in the integration directory):
+   - `<name>.hpp` — public API (namespace `scl2ext`)
+   - `<name>.cpp` — implementation
 
 ## Guidelines
 
 - Each integration is independent: it only depends on `find_package`'d external
   library + SharedCppLib2. No cross-integration coupling.
 - Public target: `SCL2Ext::<name>` (internal: `scl2ext_<name>`).
-- Header path: `<SCL2Ext/<name>.hpp>`, matching the `<SharedCppLib2/...>` style.
+- Header path: `<name>.hpp` — headers sit flat next to the CMakeLists in
+  `integrations/<name>/`; the integration target exposes that dir as the
+  include path, so consumers `#include <name>.hpp` after linking `SCL2Ext::<name>`.
 - Namespace: `scl2ext` (do not pollute `scl2`).
 - If the external library has several package-name flavors (e.g. bit7z's
   official vs vcpkg `unofficial-bit7z`), try each via `find_package(... QUIET)`

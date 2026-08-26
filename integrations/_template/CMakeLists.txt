@@ -5,7 +5,7 @@
 #   2. 顶层 CMakeLists.txt 加一行：
 #        set(SCL2EXT_<NAME> "AUTO" CACHE STRING "Build <name> integration (AUTO/ON/OFF)")
 #      并把这个 <name> 加进顶层的 foreach(...) 列表
-#   3. 写 include/SCL2Ext/<name>.hpp 与 src/<name>.cpp
+#   3. 写 <name>.hpp 与 <name>.cpp（都放在集成目录下）
 #
 # 本目录名以下划线开头，顶层 foreach 不会把它当作集成构建。
 
@@ -22,9 +22,9 @@ if(NOT <ExternalLib>_FOUND)
     message(FATAL_ERROR "SCL2Ext: <ExternalLib> is required (SCL2EXT_<NAME>=ON) but not found")
 endif()
 
-add_library(scl2ext_<name> STATIC src/<name>.cpp)
+add_library(scl2ext_<name> STATIC <name>.cpp)
 target_include_directories(scl2ext_<name> PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
 )
 target_link_libraries(scl2ext_<name> PUBLIC SharedCppLib2::basic <ExternalLib>::<ExternalLib>)
 add_library(SCL2Ext::<name> ALIAS scl2ext_<name>)

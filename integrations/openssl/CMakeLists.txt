@@ -16,9 +16,9 @@ if(NOT OpenSSL_FOUND)
     message(FATAL_ERROR "SCL2Ext: OpenSSL is required (SCL2EXT_OPENSSL=ON) but not found")
 endif()
 
-add_library(scl2ext_openssl STATIC src/tls.cpp)
+add_library(scl2ext_openssl STATIC tls.cpp)
 target_include_directories(scl2ext_openssl PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
 )
 if(WIN32)
     # Windows 需要 ws2_32 提供 socket 相关符号

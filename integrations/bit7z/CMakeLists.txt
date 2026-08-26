@@ -33,9 +33,9 @@ if(NOT _bit7z_target)
     return()
 endif()
 
-add_library(scl2ext_bit7z STATIC src/bit7z.cpp)
+add_library(scl2ext_bit7z STATIC bit7z.cpp)
 target_include_directories(scl2ext_bit7z PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
 )
 target_link_libraries(scl2ext_bit7z PUBLIC SharedCppLib2::basic ${_bit7z_target})
 add_library(SCL2Ext::bit7z ALIAS scl2ext_bit7z)

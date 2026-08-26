@@ -46,7 +46,7 @@ cmake -B build -DSCL2EXT_BIT7Z=ON
 提供 `scl2ext::tls_client` —— 一个基于 OpenSSL 的 TLS 客户端传输，实现了 SharedCppLib2 的 `scl2::transport_interface`，因此可直接作为 HTTP 客户端的底层传输来跑 HTTPS（无需改动协议层）。
 
 ```cpp
-#include <SCL2Ext/tls.hpp>
+#include <tls.hpp>
 
 scl2ext::tls_client tls;
 if (!tls.connect("example.com", 443)) { /* 握手失败 */ }
@@ -62,4 +62,4 @@ scl2::bytearray resp = tls.readAll();
 
 ## Adding an integration
 
-复制 `integrations/_template/` 并按其中 README 的步骤操作：改占位符、顶层加开关、写 `<SCL2Ext/<name>.hpp>` 与 `src/<name>.cpp`。
+复制 `integrations/_template/` 并按其中 README 的步骤操作：改占位符、顶层加开关、在集成目录下写 `<name>.hpp` 与 `<name>.cpp`（不分离 include/src，安装时头文件用白名单即可）。

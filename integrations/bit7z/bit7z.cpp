@@ -1,4 +1,4 @@
-#include "SCL2Ext/bit7z.hpp"
+#include "bit7z.hpp"
 
 #include <stdexcept>
 
